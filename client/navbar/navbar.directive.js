@@ -1,8 +1,8 @@
 /**
  * Created by jermorin on 13/06/2015.
  */
-app
-    .directive('navbar', function() {
+angular.module('mLibrary')
+    .directive('navbar', function () {
         return {
             restrict: 'AE',
             template: UiRouter.template('navbar'),

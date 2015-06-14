@@ -1,15 +1,13 @@
-window.app = angular.module('mLibrary', ['angular-meteor', 'ui.router']);
-
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
+angular.module('mLibrary').config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
     function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $stateProvider
             .state('books', {
                 url: '/books',
-                template: UiRouter.template('books'),
+                templateUrl: 'client/books/views/books.ng.html',
                 controller: 'BooksCtrl'
             }).state('addBook', {
                 url: '/addBook',
-                template: UiRouter.template('addBook'),
+                templateUrl:'client/books/views/add-book.ng.html' ,
                 controller: 'AddBookCtrl'
             });
 

@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="form-group">
+        <input type="text" class="form-control" id="inputISBN" ng-keydown="search($event,isbnId)" ng-model="isbnId"
+               placeholder="ISBN number">
+    </div>
+    <div class="panel panel-default" ng-show="book.title">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{book.title}}</h3>
+        </div>
+        <div class="panel-body">
+            <div class="media-left">
+                <img class="media-object" ng-src="{{book.thumbnail}}" alt="{{::book.title}} image">
+            </div>
+            <div class="media-body">
+                <ul class="list-group">
+                    <li class="list-group-item"
+                        ng-show="book.authors">
+                        <b>Author(s) : </b>
+                        <span ng-repeat="author in book.authors">{{author}}</span> &nbsp;
+                    </li>
+                    <li class="list-group-item"
+                        ng-show="book.publisher">
+                        <b>Publisher : </b>
+                        {{book.publisher}}
+                    </li>
+                    <li class="list-group-item"
+                        ng-show="book.description">
+                        <b>Description : </b>
+                        {{book.description}}
+                    </li>
+                    <li class="list-group-item"
+                        ng-show="book.pageCount">
+                        <b>PageCount : </b>{{book.pageCount}}
+                    </li>
+                </ul>
+            </div>
+            <button class="btn btn-success pull-right" ng-click="addBook(book)">Add this book</button>
+        </div>
+    </div>
+</div>
+

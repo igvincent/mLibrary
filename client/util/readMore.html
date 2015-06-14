@@ -1,0 +1,11 @@
+<template name="readmore">
+    <span ng-if="controller.collapsed">
+    <span ng-bind="::options.hmtext | limitTo : options.hmlimit"></span>...
+    <a ng-click="controller.toggle()" ng-bind="options.hmMoreText" ng-if="::options.hmtext.length > options.hmlimit">
+    </a>
+</span>
+<span ng-if="!controller.collapsed">
+    <span ng-bind="::options.hmtext"></span>
+    <a ng-click="controller.toggle()" ng-bind="options.hmLessText"></a>
+</span>
+</template>

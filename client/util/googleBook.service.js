@@ -1,4 +1,4 @@
-app
+angular.module('mLibrary')
     .factory('BookSearch', function ($resource) {
         return $resource('https://www.googleapis.com/books/v1/volumes?q=isbn::ISBN', {}, {
             'get': {
@@ -6,19 +6,19 @@ app
                 transformResponse: function (data) {
                     data = angular.fromJson(data);
                     var response;
-                    if(data.items){
+                    if (data.items) {
                         //Only one response is available for a ISBN
                         response = {
-                            title : data.items[0].volumeInfo.title,
-                            authors : data.items[0].volumeInfo.authors,
-                            publisher : data.items[0].volumeInfo.publisher,
-                            description : data.items[0].volumeInfo.description,
-                            pageCount : data.items[0].volumeInfo.pageCount,
+                            title: data.items[0].volumeInfo.title,
+                            authors: data.items[0].volumeInfo.authors,
+                            publisher: data.items[0].volumeInfo.publisher,
+                            description: data.items[0].volumeInfo.description,
+                            pageCount: data.items[0].volumeInfo.pageCount,
                             thumbnail: data.items[0].volumeInfo.imageLinks.thumbnail,
-                            borrow : false,
-                            since : new Date().toLocaleDateString(),
-                            borrowers : [],
-                            comments : [],
+                            borrow: false,
+                            since: new Date().toLocaleDateString(),
+                            borrowers: [],
+                            comments: [],
                             count: 0
                         };
                     }
