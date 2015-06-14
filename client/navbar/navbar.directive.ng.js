@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('mLibrary')
-    .directive('navbar', function () {
+angular.module('mLibrary').directive('navbar', function () {
         return {
             restrict: 'AE',
             template: UiRouter.template('navbar'),

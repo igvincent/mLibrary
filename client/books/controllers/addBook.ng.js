@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('mLibrary', ['angular-meteor', 'ui.router', 'ngResource'])
-    .controller('AddBookCtrl', [
+
+angular.module('mLibrary').controller('AddBookCtrl', [
         '$scope',
         '$meteor',
         'BookSearch',
-        '$log',
         function ($scope, $meteor, BookSearch) {
 
             $scope.books = $meteor.collection(Books, false, Books);

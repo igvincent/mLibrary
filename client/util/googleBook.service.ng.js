@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('mLibrary')
-    .factory('BookSearch', function ($resource) {
+angular.module('mLibrary').factory('BookSearch',['$resource', function ($resource) {
         return $resource('https://www.googleapis.com/books/v1/volumes?q=isbn::ISBN', {}, {
             'get': {
                 method: 'GET',
@@ -27,4 +26,4 @@ angular.module('mLibrary')
                 }
             }
         });
-    });
+    }]);

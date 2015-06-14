@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('mLibrary')
-    .directive('readMore', function () {
+angular.module('mLibrary').directive('readMore', function () {
         var defaults = {
             hmlimit: 100,
             hmMoreText: 'read more',
