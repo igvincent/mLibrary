@@ -1,0 +1,104 @@
+<div class="container" ng-show="book.title">
+    <div class="panel" ng-class="{'panel-success': !book.borrow, 'panel-danger': book.borrow}" ng-show="book.title">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{::book.title}}</h3>
+        </div>
+        <div class="panel-body">
+            <div class="media-left">
+                <img class="media-object" ng-src="{{::book.thumbnail}}" alt="{{::book.title}} image">
+            </div>
+            <div class="media-body">
+                <ul class="list-group">
+                    <li class="list-group-item"
+                        ng-show="book.authors">
+                        <b>Author(s) : </b>
+                        <span ng-repeat="author in book.authors">{{::author}}</span> &nbsp;
+                    </li>
+                    <li class="list-group-item"
+                        ng-show="book.publisher">
+                        <b>Publisher : </b>
+                        {{::book.publisher}}
+                    </li>
+                    <li class="list-group-item"
+                        ng-show="book.description">
+                        <span read-more hmtext="{{book.description}}"></span>
+                    </li>
+                    <li class="list-group-item"
+                        ng-show="book.pageCount">
+                        <b>PageCount : </b>{{book.pageCount}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        Comments
+                        <span class="badge pull-right">
+                            {{book.comments.length}}
+                        </span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group" ng-show="book.comments">
+                        <li class="list-group-item" ng-repeat="comment in book.comments">
+                            <b>{{::comment.username}}</b> - {{::comment.body}} <span
+                                class="pull-right">{{::comment.date}}</span>
+                        </li>
+                    </ul>
+                    <h4 ng-hide="book.comments.length > 0">No comments !</h4>
+                    <b>Add a comment</b>
+                    <input type="text"
+                           ng-keydown="addComment($event,newComment)"
+                           class="form-control"
+                           placeholder="Username"
+                           ng-model="newComment.username">
+                    <input type="text"
+                           ng-keydown="addComment($event,newComment)"
+                           class="form-control"
+                           placeholder="Comment"
+                           ng-model="newComment.body">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">Borrow this book
+                    <span class="badge pull-right">
+                        {{book.borrowers.length}}
+                    </span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="borrower in book.borrowers">
+                            <b>{{::borrower.username}}</b> <span class="pull-right">{{::borrower.date}}</span>
+                        </li>
+                    </ul>
+                    <input ng-disabled="book.borrow"
+                           ng-hide="book.borrow"
+                           type="text"
+                           ng-keydown="borrowBook($event,username)"
+                           class="form-control"
+                           ng-model="username"
+                           placeholder="Borrower username">
+                    <button ng-show="book.borrow"
+                            class="pull-right btn btn-primary"
+                            ng-click="returnBook(book)">Return book
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href class="pull-right btn-link" ng-click="delBook(book)">
+        <b>Remove this book</b>
+    </a>
+</div>
+
+<div class="container" ng-hide="book.title">
+   <h1>This book was removed !</h1>
+</div>

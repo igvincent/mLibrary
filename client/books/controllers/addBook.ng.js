@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('mLibrary', ['angular-meteor', 'ui.router', 'ngResource'])
     .controller('AddBookCtrl', [
         '$scope',
@@ -16,7 +18,9 @@ angular.module('mLibrary', ['angular-meteor', 'ui.router', 'ngResource'])
                 }
             };
 
-            $scope.addBook = function(book){
-                $scope.books.save(book);
+            $scope.addBook = function(){
+                $scope.books.save($scope.book);
+                $scope.isbnId = 'Add success';
+                $scope.book = null;
             };
         }]);

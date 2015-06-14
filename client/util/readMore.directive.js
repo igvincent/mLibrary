@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('mLibrary')
     .directive('readMore', function () {
         var defaults = {
@@ -6,25 +8,25 @@ angular.module('mLibrary')
             hmLessText: 'read less'
         };
         return {
-            restrict:'AE',
-            scope:{
-                hmtext : '@',
-                hmlimit : '@',
+            restrict: 'AE',
+            scope: {
+                hmtext: '@',
+                hmlimit: '@',
                 hmMoreText: '@',
                 hmLessText: '@'
             },
             template: UiRouter.template('readmore'),
             require: 'readMore',
-            controller : function(){
+            controller: function () {
                 var self = this;
                 self.collapsed = true;
 
-                self.toggle = function(){
+                self.toggle = function () {
                     self.collapsed = !self.collapsed;
                 }
             },
             controllerAs: 'controller',
-            link: function(scope, element, attrs, controller) {
+            link: function (scope, element, attrs, controller) {
 
                 scope.options = angular.extend(defaults, scope);
 

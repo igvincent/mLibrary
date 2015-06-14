@@ -1,6 +1,5 @@
-/**
- * Created by jermorin on 13/06/2015.
- */
+'use strict';
+
 angular.module('mLibrary')
     .directive('navbar', function () {
         return {

@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('mLibrary')
     .factory('BookSearch', function ($resource) {
         return $resource('https://www.googleapis.com/books/v1/volumes?q=isbn::ISBN', {}, {
@@ -18,8 +20,7 @@ angular.module('mLibrary')
                             borrow: false,
                             since: new Date().toLocaleDateString(),
                             borrowers: [],
-                            comments: [],
-                            count: 0
+                            comments: []
                         };
                     }
                     return response;
