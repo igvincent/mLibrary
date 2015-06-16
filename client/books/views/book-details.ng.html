@@ -27,6 +27,10 @@
                         ng-show="book.pageCount">
                         <b>PageCount : </b>{{book.pageCount}}
                     </li>
+                    <li class="list-group-item"
+                        ng-show="book.since">
+                        <b>In the library since : </b>{{book.since}}
+                    </li>
                 </ul>
             </div>
         </div>
@@ -50,17 +54,24 @@
                         </li>
                     </ul>
                     <h4 ng-hide="book.comments.length > 0">No comments !</h4>
-                    <b>Add a comment</b>
-                    <input type="text"
-                           ng-keydown="addComment($event,newComment)"
-                           class="form-control"
-                           placeholder="Username"
-                           ng-model="newComment.username">
-                    <input type="text"
-                           ng-keydown="addComment($event,newComment)"
-                           class="form-control"
-                           placeholder="Comment"
-                           ng-model="newComment.body">
+                    <h4>Add a comment</h4>
+
+                    <div class="col-md-6">
+                        <input type="text"
+                               ng-keydown="addComment($event,newComment)"
+                               class="form-control"
+                               placeholder="Username"
+                               ng-model="newComment.username">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text"
+                               ng-keydown="addComment($event,newComment)"
+                               class="form-control"
+                               placeholder="Comment"
+                               ng-model="newComment.body">
+                    </div>
+
+
                 </div>
             </div>
         </div>

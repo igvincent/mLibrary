@@ -37,5 +37,11 @@
             <button class="btn btn-success pull-right" ng-click="addBook()">Add this book</button>
         </div>
     </div>
+    <div ng-hide="book.title">
+        <div class="h4" ng-show="bookNotFound">No book for this ISBN number</div>
+        <div class="h4" ng-show="addSuccess">Add success !</div>
+        <div class="h4" ng-show="isbnId && !bookNotFound && !addSuccess">Press enter to search</div>
+        <div class="h4" ng-hide="isbnId">Please complete the input to begin the search</div>
+    </div>
 </div>
 
