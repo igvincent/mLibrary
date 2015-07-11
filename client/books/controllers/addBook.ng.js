@@ -21,9 +21,9 @@ angular.module('mLibrary').controller('AddBookCtrl', [
                 }
             };
 
-            $scope.addBook = function(){
+            $scope.addBook = function(book){
                 $scope.addSuccess = false;
-                $scope.books.save($scope.book).then(function(){
+                $scope.books.save(book).then(function(){
                     $scope.addSuccess = true;
                 });
                 $scope.isbnId = null;

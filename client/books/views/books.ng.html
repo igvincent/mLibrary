@@ -1,9 +1,13 @@
 <ul class="grid cs-style">
     <li ng-repeat="book in books" class="col-md-2" ng-click="goDetails(book)">
         <figure>
-            <div><img src="{{book.thumbnail}}" alt="{{::book.title}}"></div>
+            <div><img src="{{::book.thumbnail}}" alt="{{::book.title}}"></div>
             <figcaption>
-                <p>{{::book.title}}</p>
+                <p>
+                    <i ng-show="!book.borrow" class="fa fa-check"></i>
+                    <i ng-show="book.borrow" class="fa fa-close"></i>
+                    {{::book.title}}
+                </p>
                 <span><div ng-repeat="author in book.authors">{{::author}}</div></span> &nbsp;
             </figcaption>
         </figure>

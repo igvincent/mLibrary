@@ -18,6 +18,7 @@ angular.module('mLibrary').factory('BookSearch',['$resource', function ($resourc
                             thumbnail: data.items[0].volumeInfo.imageLinks.thumbnail,
                             borrow: false,
                             since: new Date().toLocaleDateString(),
+                            sinceBorrowable: new Date().toLocaleDateString(),
                             borrowers: [],
                             comments: []
                         };
