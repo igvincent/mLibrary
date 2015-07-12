@@ -1,5 +1,5 @@
 <ul class="grid cs-style">
-    <li ng-repeat="book in books" class="col-md-2" ng-click="goDetails(book)">
+    <li ng-repeat="book in books" ng-click="goDetails(book)">
         <figure>
             <div><img src="{{::book.thumbnail}}" alt="{{::book.title}}"></div>
             <figcaption>
