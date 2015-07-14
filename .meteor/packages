@@ -12,3 +12,4 @@ bootswatch:flatly
 urigo:angular-ui-router
 angularjs:angular-resource
 pfafman:font-awesome-4
+mrt:modernizr-meteor
