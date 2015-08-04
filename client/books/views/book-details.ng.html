@@ -58,23 +58,22 @@
                         </li>
                     </ul>
                     <h4 ng-hide="book.comments.length > 0">No comments !</h4>
-                    <form class="form-inline">
-                            <input type="text"
-                                   class="form-control"
-                                   placeholder="Username"
-                                   ng-model="newComment.username">
-                            <input type="text"
-                                   class="form-control"
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control"
                                    placeholder="Comment"
-                                   ng-model="newComment.body">
-
-                        <button class="btn btn-primary"
-                                ng-click="addComment(book, newComment)">
-                            Add
-                        </button>
+                                   ng-model="newComment.body"/>
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-primary"
+                                            type="button"
+                                            ng-click="addComment(book, newComment, currentUser)">
+                                        Comment
+                                    </button>
+                                  </span>
+                        </div>
                     </form>
-
                 </div>
+
             </div>
         </div>
         <div class="col-md-6">
@@ -92,28 +91,19 @@
                             <b>{{::borrower.username}}</b> <span class="pull-right">{{::borrower.date}}</span>
                         </li>
                     </ul>
-                    <form class="form-inline">
-                        <input ng-disabled="book.borrow"
-                               ng-hide="book.borrow"
-                               type="text"
-                               class="form-control"
-                               ng-model="username"
-                               placeholder="Borrower username">
-                        <button ng-hide="book.borrow"
-                                class="btn btn-primary"
-                                ng-click="borrowBook(book, username)">Borrow
-                        </button>
-                        <button ng-show="book.borrow"
-                                class="btn btn-primary"
-                                ng-click="returnBook(book)">Return book
-                        </button>
-                    </form>
-
+                    <button ng-hide="book.borrow"
+                            class="btn btn-primary col-md-12"
+                            ng-click="borrowBook(book, currentUser)">Borrow
+                    </button>
+                    <button ng-show="book.borrow"
+                            class="btn btn-primary col-md-12"
+                            ng-click="returnBook(book, currentUser)">Return book
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-    <a href class="pull-right btn-link" ng-click="delBook(book)">
+    <a href class="pull-right btn-link" ng-show="currentUser._id === book.owner" ng-click="delBook(book)">
         <b>Remove this book</b>
     </a>
 </div>
