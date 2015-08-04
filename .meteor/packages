@@ -6,10 +6,11 @@
 
 meteor-platform
 autopublish
-insecure
 urigo:angular
 bootswatch:flatly
 urigo:angular-ui-router
 angularjs:angular-resource
 pfafman:font-awesome-4
 mrt:modernizr-meteor
+accounts-password
+accounts-ui
