@@ -21,7 +21,8 @@ angular.module('mLibrary').controller('AddBookCtrl', [
                 }
             };
 
-            $scope.addBook = function(book){
+            $scope.addBook = function(book, user){
+                book.owner = user._id;
                 $scope.addSuccess = false;
                 $scope.books.save(book).then(function(){
                     $scope.addSuccess = true;
