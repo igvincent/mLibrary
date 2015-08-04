@@ -10,11 +10,21 @@ angular.module('mLibrary').config(['$stateProvider', '$urlRouterProvider', '$loc
             }).state('bookDetails', {
                 url: '/books/:bookId',
                 templateUrl: 'client/books/views/book-details.ng.html',
-                controller: 'BookDetailsCtrl'
+                controller: 'BookDetailsCtrl',
+                resolve: {
+                    "currentUser": ["$meteor", function ($meteor) {
+                        return $meteor.requireUser();
+                    }]
+                }
             }).state('addBook', {
                 url: '/addBook',
-                templateUrl:'client/books/views/add-book.ng.html' ,
-                controller: 'AddBookCtrl'
+                templateUrl: 'client/books/views/add-book.ng.html',
+                controller: 'AddBookCtrl',
+                resolve: {
+                    "currentUser": ["$meteor", function ($meteor) {
+                        return $meteor.requireUser();
+                    }]
+                }
             });
 
         $urlRouterProvider.otherwise("/books");
