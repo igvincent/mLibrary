@@ -1,5 +1,20 @@
+<div class="container">
+    <form name="searchForm">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="search">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All <span class="caret"></span></button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <!-- todo://search changement field -->
+                    <li><a>By authors</a></li>
+                    <li><a>By title</a></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
 <ul class="grid cs-style">
-    <li ng-repeat="book in books" ng-click="goDetails(book)">
+    <li ng-repeat="book in books | filter:search" ng-click="goDetails(book)">
         <figure>
             <div><img src="{{::book.thumbnail}}" alt="{{::book.title}}"></div>
             <figcaption>
