@@ -3,7 +3,7 @@
         <div class="input-group">
             <input type="text" class="form-control" ng-model="search">
             <div class="input-group-btn">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All <span class="caret"></span></button>
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search"></i><span class="caret"></span></button>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <!-- todo://search changement field -->
                     <li><a>By authors</a></li>
@@ -14,7 +14,7 @@
     </form>
 </div>
 <ul class="grid cs-style">
-    <li ng-repeat="book in books | filter:search" ng-click="goDetails(book)">
+    <li ng-repeat="book in main.books | filter:search" ng-click="main.goDetails(book)">
         <figure>
             <div><img src="{{::book.thumbnail}}" alt="{{::book.title}}"></div>
             <figcaption>

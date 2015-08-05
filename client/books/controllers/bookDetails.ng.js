@@ -1,49 +1,48 @@
 'use strict';
 
-angular.module("mLibrary").controller("BookDetailsCtrl", ['$scope', '$stateParams', '$meteor', '$state', '$rootScope',
-    function ($scope, $stateParams, $meteor, $state) {
+angular.module("mLibrary").controller("BookDetailsCtrl", ['$stateParams', '$meteor', '$state',
+    function ($stateParams, $meteor, $state) {
+        var self = this;
 
-        $scope.books = $meteor.collection(Books);
+        self.books = $meteor.collection(Books);
 
+        self.book = $meteor.object(Books, $stateParams.bookId);
 
-        $scope.book = $meteor.object(Books, $stateParams.bookId);
-
-        $scope.addComment = function (book, newComment, currentUser) {
+        self.addComment = function (book, newComment, currentUser) {
             if (newComment.body) {
                 var comment = {
                     username: currentUser.emails[0].address,
-                    date: new Date().toLocaleDateString(),
+                    date: new Date(),
                     body: newComment.body
                 };
 
                 if (!book.comments) book.comments = [];
                 book.comments.push(comment);
-                $scope.newComment = null;
+                self.newComment = null;
             }
         };
 
-        $scope.borrowBook = function (book, currentUser) {
+        self.borrowBook = function (book, currentUser) {
             if (currentUser) {
                 book.borrow = true;
                 var borrower = {
                     username: currentUser.emails[0].address,
-                    date: new Date().toLocaleDateString()
+                    dateBorrow: new Date()
                 };
                 if (!book.borrowers) book.borrowers = [];
                 book.borrowers.push(borrower);
             }
         };
 
-        $scope.returnBook = function (book, currentUser) {
+        self.returnBook = function (book, currentUser) {
             if(book.borrowers.slice(-1)[0].username === currentUser.emails[0].address){
                 book.borrow = false;
-                book.sinceBorrowable = new Date().toLocaleDateString();
+                book.borrowers.slice(-1)[0].dateUnborrow = new Date();
             }
         };
 
-
-        $scope.delBook = function (book) {
-            $scope.books.remove(book);
+        self.delBook = function (book) {
+            self.books.remove(book);
             $state.go('books');
         };
 

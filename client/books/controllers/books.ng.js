@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('mLibrary').controller('BooksCtrl', ['$scope', '$meteor', '$location',
-    function ($scope, $meteor, $location) {
-        $scope.books = $meteor.collection(Books);
+angular.module('mLibrary').controller('BooksCtrl', ['$meteor', '$location',
+    function ($meteor, $location) {
+        var self = this;
+        self.books = $meteor.collection(Books);
 
-
-        $scope.goDetails = function(book){
+        self.goDetails = function(book){
             $location.path('/books/' + book._id);
         }
     }]);

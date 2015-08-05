@@ -6,11 +6,13 @@ angular.module('mLibrary').config(['$stateProvider', '$urlRouterProvider', '$loc
             .state('books', {
                 url: '/books',
                 templateUrl: 'client/books/views/books.ng.html',
-                controller: 'BooksCtrl'
+                controller: 'BooksCtrl',
+                controllerAs: 'main'
             }).state('bookDetails', {
                 url: '/books/:bookId',
                 templateUrl: 'client/books/views/book-details.ng.html',
                 controller: 'BookDetailsCtrl',
+                controllerAs: 'main',
                 resolve: {
                     "currentUser": ["$meteor", function ($meteor) {
                         return $meteor.requireUser();
@@ -20,6 +22,7 @@ angular.module('mLibrary').config(['$stateProvider', '$urlRouterProvider', '$loc
                 url: '/addBook',
                 templateUrl: 'client/books/views/add-book.ng.html',
                 controller: 'AddBookCtrl',
+                controllerAs: 'main',
                 resolve: {
                     "currentUser": ["$meteor", function ($meteor) {
                         return $meteor.requireUser();

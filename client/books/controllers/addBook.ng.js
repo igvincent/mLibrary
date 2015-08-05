@@ -2,32 +2,28 @@
 
 
 angular.module('mLibrary').controller('AddBookCtrl', [
-        '$scope',
         '$meteor',
         'BookSearch',
-        function ($scope, $meteor, BookSearch) {
+        '$location',
+        function ($meteor, BookSearch, $location) {
+            var self = this;
 
-            $scope.books = $meteor.collection(Books, false, Books);
-            $scope.bookNotFound = false;
-            $scope.addSuccess = false;
+            self.books = $meteor.collection(Books, false, Books);
 
-            $scope.search = function (e, isbnId) {
-                if (isbnId && e.keyCode === 13) {
+            self.search = function (isbnId) {
+                if (isbnId) {
                     BookSearch.get({ISBN: isbnId}, function (data) {
-                        $scope.book = data;
+                        self.book = data;
                     }, function(){
-                        $scope.bookNotFound = true;
+                        self.bookNotFound = true;
                     });
                 }
             };
 
-            $scope.addBook = function(book, user){
+            self.addBook = function(book, user){
                 book.owner = user._id;
-                $scope.addSuccess = false;
-                $scope.books.save(book).then(function(){
-                    $scope.addSuccess = true;
+                self.books.save(book).then(function(res){
+                    $location.path('/books/' + res[0]._id);
                 });
-                $scope.isbnId = null;
-                $scope.book = null;
             };
         }]);

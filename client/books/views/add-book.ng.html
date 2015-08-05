@@ -1,47 +1,49 @@
 <div class="container">
-    <div class="form-group">
-        <input type="text" class="form-control" id="inputISBN" ng-keydown="search($event,isbnId)" ng-model="isbnId"
-               placeholder="ISBN number">
-    </div>
-    <div class="panel panel-default" ng-show="book.title">
+    <form class="input-group" ng-submit="main.search(main.isbnId)">
+        <input type="text" class="form-control"
+               placeholder="ISBN number"
+               ng-model="main.isbnId"/>
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-primary"
+                                            type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                  </span>
+    </form>
+    <hr ng-show="main.book.title">
+    <div class="panel panel-default" ng-show="main.book.title">
         <div class="panel-heading">
-            <h3 class="panel-title">{{book.title}}</h3>
+            <h3 class="panel-title">{{main.book.title}}</h3>
         </div>
         <div class="panel-body">
             <div class="media-left">
-                <img class="media-object" ng-src="{{book.thumbnail}}" alt="{{::book.title}} image">
+                <img class="media-object" ng-src="{{main.book.thumbnail}}" alt="{{main.book.title}} image">
             </div>
             <div class="media-body">
                 <ul class="list-group">
                     <li class="list-group-item"
-                        ng-show="book.authors">
+                        ng-show="main.book.authors">
                         <b>Author(s) : </b>
-                        <span ng-repeat="author in book.authors">{{author}}</span> &nbsp;
+                        <span ng-repeat="author in main.book.authors">{{author}}</span> &nbsp;
                     </li>
                     <li class="list-group-item"
-                        ng-show="book.publisher">
+                        ng-show="main.book.publisher">
                         <b>Publisher : </b>
-                        {{book.publisher}}
+                        {{main.book.publisher}}
                     </li>
                     <li class="list-group-item"
-                        ng-show="book.description">
+                        ng-show="main.book.description">
                         <b>Description : </b>
-                        {{book.description}}
+                        {{main.book.description}}
                     </li>
                     <li class="list-group-item"
-                        ng-show="book.pageCount">
-                        <b>PageCount : </b>{{book.pageCount}}
+                        ng-show="main.book.pageCount">
+                        <b>PageCount : </b>{{main.book.pageCount}}
                     </li>
                 </ul>
             </div>
-            <button class="btn btn-success pull-right" ng-click="addBook(book, currentUser)"><i class="fa fa-plus"></i>&nbsp;Add this book</button>
+            <button class="btn btn-success pull-right" ng-click="main.addBook(main.book, currentUser)"><i class="fa fa-plus"></i>&nbsp;Add this book</button>
         </div>
-    </div>
-    <div ng-hide="book.title">
-        <div class="h4" ng-show="bookNotFound">No book for this ISBN number</div>
-        <div class="h4" ng-show="addSuccess">Add success !</div>
-        <div class="h4" ng-show="isbnId && !bookNotFound && !addSuccess">Press enter to search</div>
-        <div class="h4" ng-hide="isbnId">Please complete the input to begin the search</div>
     </div>
 </div>
 
