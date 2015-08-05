@@ -1,16 +1,17 @@
 'use strict';
 
-angular.module("mLibrary").controller("BookDetailsCtrl", ['$scope', '$stateParams', '$meteor', '$state',
+angular.module("mLibrary").controller("BookDetailsCtrl", ['$scope', '$stateParams', '$meteor', '$state', '$rootScope',
     function ($scope, $stateParams, $meteor, $state) {
 
         $scope.books = $meteor.collection(Books);
 
+
         $scope.book = $meteor.object(Books, $stateParams.bookId);
 
-        $scope.addComment = function (book, newComment) {
-            if (newComment.body && newComment.username) {
+        $scope.addComment = function (book, newComment, currentUser) {
+            if (newComment.body) {
                 var comment = {
-                    username: newComment.username,
+                    username: currentUser.emails[0].address,
                     date: new Date().toLocaleDateString(),
                     body: newComment.body
                 };
@@ -21,22 +22,23 @@ angular.module("mLibrary").controller("BookDetailsCtrl", ['$scope', '$stateParam
             }
         };
 
-        $scope.borrowBook = function (book, username) {
-            if (username) {
+        $scope.borrowBook = function (book, currentUser) {
+            if (currentUser) {
                 book.borrow = true;
                 var borrower = {
-                    username: username,
+                    username: currentUser.emails[0].address,
                     date: new Date().toLocaleDateString()
                 };
                 if (!book.borrowers) book.borrowers = [];
                 book.borrowers.push(borrower);
-                $scope.username = null;
             }
         };
 
-        $scope.returnBook = function (book) {
-            book.borrow = false;
-            book.sinceBorrowable = new Date().toLocaleDateString();
+        $scope.returnBook = function (book, currentUser) {
+            if(book.borrowers.slice(-1)[0].username === currentUser.emails[0].address){
+                book.borrow = false;
+                book.sinceBorrowable = new Date().toLocaleDateString();
+            }
         };
 
 
