@@ -12,19 +12,18 @@
             </div>
         </div>
     </form>
+    <div class="col-md-4" ng-repeat="book in main.books | filter:search">
+        <div class="card card--small">
+            <div style="background-image: url({{::book.thumbnail}})" class="card__image"></div>
+            <h2 class="card__title">{{::book.title}}</h2><span class="card__subtitle">By <span ng-repeat="author in book.authors">{{::author}}</span></span>
+            <div class="card__action-bar">
+                <button ng-click="main.goDetails(book)" class="card__button">LEARN MORE</button>
+            <span ng-show="!book.borrow">
+            <i class="fa fa-check"></i> Available
+            </span>
+                <span ng-show="book.borrow"><i class="fa fa-close"></i> Unavailable</span>
+            </div>
+        </div>
+    </div>
 </div>
-<ul class="grid cs-style">
-    <li ng-repeat="book in main.books | filter:search" ng-click="main.goDetails(book)">
-        <figure>
-            <div><img src="{{::book.thumbnail}}" alt="{{::book.title}}"></div>
-            <figcaption>
-                <p>
-                    <i ng-show="!book.borrow" class="fa fa-check"></i>
-                    <i ng-show="book.borrow" class="fa fa-close"></i>
-                    {{::book.title}}
-                </p>
-                <span><div ng-repeat="author in book.authors">{{::author}}</div></span> &nbsp;
-            </figcaption>
-        </figure>
-    </li>
-</ul>
+
