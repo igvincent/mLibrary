@@ -43,7 +43,7 @@
                     <div class="panel-title">
                         <i class="fa fa-comments"></i>&nbsp; Comments
                         <span class="badge pull-right">
-                            {{::main.book.comments.length}}
+                            {{main.book.comments.length}}
                         </span>
                     </div>
                 </div>
@@ -71,13 +71,38 @@
                     </form>
                 </div>
             </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title"><i class="fa fa-book"></i>&nbsp;Bookings
+                    <span class="badge pull-right">
+                        {{main.book.bookings.length}}
+                    </span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="borrower in main.book.bookings">
+                            <b>{{::borrower.username}}</b>
+
+                            <div class="small pull-right">
+                                <span>
+                                    {{::borrower.date | date: 'd/MM/yy h:mm'}}
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="btn btn-primary col-xs-12"
+                            ng-click="main.bookBook(main.book, currentUser)">Book this book
+                    </button>
+                </div>
+            </div>
         </div>
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="panel-title"><i class="fa fa-book"></i>&nbsp;Borrow
                     <span class="badge pull-right">
-                        {{::main.book.borrowers.length}}
+                        {{main.book.borrowers.length}}
                     </span>
                     </div>
                 </div>
