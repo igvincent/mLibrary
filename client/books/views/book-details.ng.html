@@ -32,6 +32,9 @@
                         ng-show="main.book.since">
                         <b>In the library since : </b>{{::main.book.since | date: 'd/MM/yy h:mm'}}
                     </li>
+                    <li class="list-group-item" ng-show="main.book.tags">
+                       <b>Tags : </b><span class="label label-primary" ng-repeat="tag in main.book.tags">{{tag.text}}</span>
+                    </li>
                 </ul>
             </div>
         </div>

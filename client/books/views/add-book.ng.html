@@ -40,9 +40,15 @@
                         ng-show="main.book.pageCount">
                         <b>PageCount : </b>{{main.book.pageCount}}
                     </li>
+
                 </ul>
             </div>
-            <button class="btn btn-success pull-right" ng-click="main.addBook(main.book, currentUser)"><i class="fa fa-plus"></i>&nbsp;Add this book</button>
+            <tags-input ng-model="main.book.tags">
+                <auto-complete min-length="1" source="main.tagsList"></auto-complete>
+            </tags-input>
+            <button class="btn btn-success pull-right" ng-click="main.addBook(main.book, currentUser)"><i
+                    class="fa fa-plus"></i>&nbsp;Add this book
+            </button>
         </div>
     </div>
 </div>

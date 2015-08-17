@@ -1,0 +1,21 @@
+{
+  "name": "mLibrary",
+  "version": "0.0.0",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    ".meteor/local/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-tags-input": "~3.0.0"
+  },
+  "overrides": {
+    "angular": {
+      "main": []
+    }
+  }
+}
