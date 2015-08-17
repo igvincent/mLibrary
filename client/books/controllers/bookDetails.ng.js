@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module("mLibrary").controller("BookDetailsCtrl", ['$stateParams', '$meteor', '$state',
-    function ($stateParams, $meteor, $state) {
+angular.module("mLibrary").controller("BookDetailsCtrl", ['$stateParams', '$meteor', '$state', 'ngToast',
+    function ($stateParams, $meteor, $state, ngToast) {
         var self = this;
 
         self.books = $meteor.collection(Books);
@@ -61,6 +61,13 @@ angular.module("mLibrary").controller("BookDetailsCtrl", ['$stateParams', '$mete
                 book.borrow = false;
                 book.borrowers.slice(-1)[0].dateUnborrow = new Date();
             }
+            else {
+                ngToast.create({
+                    className: 'warning',
+                    content: 'You can\'t return this book, you aren\'t the borrower',
+                    dismissButton: true
+                });
+            }
         };
 
         self.delBook = function (book) {
@@ -79,6 +86,13 @@ angular.module("mLibrary").controller("BookDetailsCtrl", ['$stateParams', '$mete
                 };
                 if (!book.bookings) book.bookings = [];
                 book.bookings.push(booking);
+            }
+            else {
+                ngToast.create({
+                    className: 'warning',
+                    content: 'You can\'t book this book',
+                    dismissButton: true
+                });
             }
         }
 

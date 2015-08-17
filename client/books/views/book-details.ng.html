@@ -33,7 +33,8 @@
                         <b>In the library since : </b>{{::main.book.since | date: 'd/MM/yy h:mm'}}
                     </li>
                     <li class="list-group-item" ng-show="main.book.tags">
-                       <b>Tags : </b><span class="label label-primary" ng-repeat="tag in main.book.tags">{{tag.text}}</span>
+                        <b>Tags : </b><span class="label label-primary"
+                                            ng-repeat="tag in main.book.tags">{{tag.text}}</span>
                     </li>
                 </ul>
             </div>
@@ -52,13 +53,12 @@
                 </div>
                 <div class="panel-body">
                     <ul class="list-group" ng-show="main.book.comments">
+                        <li class="list-group-item" ng-hide="main.book.comments.length > 0">No comments !</li>
                         <li class="list-group-item" ng-repeat="comment in main.book.comments">
                             <b>{{::comment.username}}</b> - {{::comment.body}}
                             <span class="small pull-right">{{::comment.date | date : 'd/MM/yy h:mm'}}</span>
                         </li>
                     </ul>
-                    <h4 ng-hide="main.book.comments.length > 0">No comments !</h4>
-
                     <form name="addCommentForm" ng-submit="main.addComment(main.book, main.newComment, currentUser)">
                         <div class="input-group">
                             <input type="text" class="form-control"
@@ -84,6 +84,7 @@
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
+                        <li class="list-group-item" ng-hide="main.book.bookings.length > 0">No booking yet !</li>
                         <li class="list-group-item" ng-repeat="borrower in main.book.bookings">
                             <b>{{::borrower.username}}</b>
 
@@ -131,7 +132,8 @@
                             class="btn btn-primary col-xs-12"
                             ng-click="main.borrowBook(main.book, currentUser)">Borrow
                     </button>
-                    <button ng-show="main.book.borrow"
+                    <button ng-show="main.book.borrow &&
+                                     main.book.borrowers.slice(-1)[0].username == currentUser.emails[0].address"
                             class="btn btn-primary col-xs-12"
                             ng-click="main.returnBook(main.book, currentUser)">Return book
                     </button>
@@ -143,6 +145,7 @@
        ng-click="main.delBook(main.book)">
         <b>Remove this book</b>
     </a>
+
 </div>
 <div class="container" ng-hide="main.book.title">
     <h1>No books for this id !</h1>
